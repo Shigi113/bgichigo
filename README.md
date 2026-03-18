@@ -1,2 +1,0 @@
-# bgichigo
-portifolio
