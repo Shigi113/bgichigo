@@ -940,24 +940,37 @@ textarea::placeholder {
 
     .nav__links {
         display: none;
-        position: fixed;
-        inset: 64px 0 0 0;
-        background: var(--paper);
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        background: rgba(245, 242, 236, 0.95);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(216, 211, 202, 0.6);
+        border-radius: var(--radius);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         flex-direction: column;
         align-items: flex-start;
-        padding: 2rem 1.5rem;
+        padding: 1.5rem;
         gap: 0.5rem;
-        border-top: 1px solid var(--border);
         z-index: 99;
     }
 
     .nav__links.open {
         display: flex;
+        animation: fadeDownMenu 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes fadeDownMenu {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .nav__links a {
         font-size: 1rem;
         padding: 0.6rem 0;
+        width: 100%;
     }
 
     .nav__links .btn {
