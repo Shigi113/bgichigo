@@ -978,9 +978,8 @@
         <nav class="nav container">
 
             <a class="brand" href="#top" aria-label="Home">
-
-                Brian Gichigo
-
+                <img src="brian-avatar.png" alt="Brian Gichigo profile avatar" class="brand__avatar" width="36" height="36" decoding="async">
+                <span class="brand__text">Brian Gichigo</span>
             </a>
 
             <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -1083,11 +1082,22 @@
 
                         </ul>
 
-                        <div class="card__actions">
+                        <div class="card__actions" style="flex-wrap: wrap;">
+
+                            <a class="btn btn--sm" href="#contact">Request a quote</a>
 
                             <a class="btn btn--sm btn--ghost" href="#services">Explore services</a>
 
-                            <a class="btn btn--sm" href="#contact">Request a quote</a>
+                            <a class="btn btn--sm btn--ghost" href="BRIAN-GICHIGO-cv.pdf"
+                                download="BRIAN_GICHIGO_CV.pdf" title="Download BRIAN GICHIGO CV">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                CV
+                            </a>
 
                         </div>
 
@@ -1605,6 +1615,16 @@
                     </svg>
                     Email
                 </a>
+                <a href="brian-ndungu-cv.pdf" download="BRIAN_NDUNGU_CV.pdf" aria-label="Download CV">
+                    <!-- Download icon -->
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Download CV
+                </a>
             </div>
 
             <!-- Right: actions -->
@@ -1692,17 +1712,10 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--surface);
             border: 2px solid rgba(255, 255, 255, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            object-fit: cover;
             flex-shrink: 0;
-            font-family: var(--ff-head);
-            font-weight: 800;
-            font-size: 1rem;
-            color: #fff;
-            letter-spacing: -0.03em;
         }
 
         .wa-card__info {
@@ -1965,7 +1978,7 @@
         <div id="wa-card" role="dialog" aria-modal="false" aria-label="Chat with Brian Gichigo">
 
             <div class="wa-card__head">
-                <div class="wa-card__avatar" aria-hidden="true">BG</div>
+                <img src="brian-avatar.png" alt="Brian Gichigo" class="wa-card__avatar" decoding="async">
                 <div class="wa-card__info">
                     <p class="wa-card__name">Brian Gichigo</p>
                     <div class="wa-card__status">
