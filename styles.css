@@ -346,14 +346,36 @@ p {
     font-weight: 800;
     letter-spacing: -0.03em;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Removed the global opacity transition to let the avatar pop */
 }
 
-.brand::before {
+.brand__avatar {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    filter: grayscale(100%) contrast(115%);
+    transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.brand:hover .brand__avatar {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.12);
+    border-color: var(--accent);
+    box-shadow: 0 6px 16px rgba(200, 64, 30, 0.25);
+}
+
+.brand__text::before {
     content: '[ ';
     color: var(--accent);
 }
 
-.brand::after {
+.brand__text::after {
     content: ' ]';
     color: var(--accent);
 }
