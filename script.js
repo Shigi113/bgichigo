@@ -82,3 +82,17 @@
   setActive(); // run once on load
 
 })();
+function handleContact(event) {
+    event.preventDefault();
+
+    const name    = document.getElementById('contactName').value;
+    const email   = document.getElementById('contactEmail').value;
+    const message = document.getElementById('contactMessage').value;
+
+    // Opens user's email client with pre-filled message
+    const mailtoLink = `mailto:brianndungu844@gmail.com`
+        + `?subject=Portfolio Inquiry from ${encodeURIComponent(name)}`
+        + `&body=${encodeURIComponent(message)}%0A%0AReply to: ${encodeURIComponent(email)}`;
+
+    window.location.href = mailtoLink;
+}
