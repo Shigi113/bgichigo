@@ -1,0 +1,22 @@
+.a11y-toolbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.a11y-toolbar button {
+    background: none;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.a11y-toolbar button:hover {
+    background-color: #fff;
+    color: #000;
+}
