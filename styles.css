@@ -356,7 +356,6 @@ p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    /* Removed the global opacity transition to let the avatar pop */
 }
 
 .brand__avatar {
@@ -508,14 +507,12 @@ p {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
-    max-width: none;
 }
 
 .proof__value {
     font-family: var(--ff-head);
     font-size: 0.95rem;
     font-weight: 600;
-    max-width: none;
     text-align: right;
 }
 
@@ -550,6 +547,69 @@ p {
     flex-wrap: wrap;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
+}
+
+/* ── Services Layout with Image ────────────────────────── */
+.services-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.services-content {
+    order: 2;
+}
+
+.services-image {
+    order: 1;
+}
+
+.image-container {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--radius) * 2);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.image-container:hover img {
+    transform: scale(1.02);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+}
+
+.image-container figcaption {
+    font-family: var(--ff-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* ── Stack Layout with Image ───────────────────────────── */
+.stack-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.stack-image {
+    order: 1;
+}
+
+.stack-content {
+    order: 2;
 }
 
 /* ── Tiles ───────────────────────────────────────────────── */
@@ -876,7 +936,7 @@ textarea::placeholder {
 }
 
 /* ── Scroll animations ───────────────────────────────────── */
-@keyframes fadeUp {
+@keyframes fadeUpAnim {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -891,7 +951,7 @@ textarea::placeholder {
 .tile,
 .case,
 .card {
-    animation: fadeUp 0.5s var(--ease-out) both;
+    animation: fadeUpAnim 0.5s var(--ease-out) both;
 }
 
 .grid .tile:nth-child(1) {
@@ -930,6 +990,24 @@ textarea::placeholder {
 
     .contact {
         grid-template-columns: 1fr;
+    }
+
+    .services-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .services-layout .services-content,
+    .services-layout .services-image {
+        order: unset;
+    }
+
+    .stack-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .stack-layout .stack-content,
+    .stack-layout .stack-image {
+        order: unset;
     }
 }
 
@@ -991,5 +1069,10 @@ textarea::placeholder {
 
     .proof__value {
         font-size: 0.85rem;
+    }
+
+    .services-layout,
+    .stack-layout {
+        gap: 2rem;
     }
 }
