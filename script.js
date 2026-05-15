@@ -31,11 +31,10 @@
     h1.textContent = '';
     leadP.textContent = '';
 
-    // Add cursor styling
+    // Add cursor styling (ONLY for h1)
     const style = document.createElement('style');
     style.textContent = `
-      .hero__content h1.typing::after,
-      .hero__content .lead.typing::after {
+      .hero__content h1.typing::after {
         content: '';
         display: inline-block;
         width: 2px;
@@ -51,8 +50,7 @@
         51%, 100% { opacity: 0; }
       }
 
-      .hero__content h1.typing,
-      .hero__content .lead.typing {
+      .hero__content h1.typing {
         min-height: 1em;
       }
     `;
@@ -79,20 +77,17 @@
       }
     }
 
-    // Type lead paragraph
+    // Type lead paragraph (without cursor)
     function typeLead() {
       let leadIndex = 0;
-      leadP.classList.add('typing');
 
       function typeChar() {
         if (leadIndex < leadText.length) {
           leadP.textContent += leadText[leadIndex];
           leadIndex++;
           setTimeout(typeChar, charSpeed);
-        } else {
-          // All done
-          leadP.classList.remove('typing');
         }
+        // All done - no cursor removal needed
       }
 
       typeChar();
