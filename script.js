@@ -80,18 +80,14 @@
     // Type lead paragraph (without cursor)
     function typeLead() {
       let leadIndex = 0;
-       leadP.classList.add('typing');
 
       function typeChar() {
         if (leadIndex < leadText.length) {
           leadP.textContent += leadText[leadIndex];
           leadIndex++;
           setTimeout(typeChar, charSpeed);
-             } else {
-          // All done
-          leadP.classList.remove('typing');
-        }
-        }
+             }
+        // All done - no cursor removal needed
       }
 
       typeChar();
