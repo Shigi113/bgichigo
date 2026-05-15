@@ -5,6 +5,110 @@
 (function () {
   'use strict';
 
+  /* ── Typing Effect for Hero Section ────────────────────── */
+  function initTypingEffect() {
+    const heroContent = document.querySelector('.hero__content');
+    const h1 = heroContent?.querySelector('h1');
+    const leadP = heroContent?.querySelector('.lead');
+    
+    if (!h1 || !leadP) return;
+
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      // Skip animation if user prefers reduced motion
+      h1.style.opacity = '1';
+      leadP.style.opacity = '1';
+      return;
+    }
+
+    // Store original text content
+    const h1Text = h1.textContent;
+    const leadText = leadP.textContent;
+
+    // Clear the elements
+    h1.textContent = '';
+    leadP.textContent = '';
+
+    // Add cursor styling
+    const style = document.createElement('style');
+    style.textContent = `
+      .hero__content h1.typing::after,
+      .hero__content .lead.typing::after {
+        content: '';
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background-color: var(--accent);
+        margin-left: 2px;
+        animation: typingCursor 0.6s step-end infinite;
+        vertical-align: middle;
+      }
+
+      @keyframes typingCursor {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+
+      .hero__content h1.typing,
+      .hero__content .lead.typing {
+        min-height: 1em;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Add typing class to show cursor
+    h1.classList.add('typing');
+
+    // Typing settings
+    const charSpeed = 30; // ms per character
+    const lineDelay = 600; // ms delay between h1 and lead
+    let currentIndex = 0;
+
+    // Type h1
+    function typeH1() {
+      if (currentIndex < h1Text.length) {
+        h1.textContent += h1Text[currentIndex];
+        currentIndex++;
+        setTimeout(typeH1, charSpeed);
+      } else {
+        // h1 complete, remove cursor and start lead
+        h1.classList.remove('typing');
+        setTimeout(typeLead, lineDelay);
+      }
+    }
+
+    // Type lead paragraph
+    function typeLead() {
+      let leadIndex = 0;
+      leadP.classList.add('typing');
+
+      function typeChar() {
+        if (leadIndex < leadText.length) {
+          leadP.textContent += leadText[leadIndex];
+          leadIndex++;
+          setTimeout(typeChar, charSpeed);
+        } else {
+          // All done
+          leadP.classList.remove('typing');
+        }
+      }
+
+      typeChar();
+    }
+
+    // Start typing effect when the page loads
+    window.addEventListener('load', typeH1, { once: true });
+    
+    // Fallback in case load event doesn't fire in time
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      typeH1();
+    }
+  }
+
+  initTypingEffect();
+
   /* ── Preloader ─────────────────────────────────────────── */
   const preloader = document.getElementById('preloader');
   if (preloader) {
