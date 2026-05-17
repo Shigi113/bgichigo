@@ -1,0 +1,439 @@
+/**
+ * ╔══════════════════════════════════════════════════════╗
+ * ║  Scroll-Triggered Animation Styles                  ║
+ * ║  Premium entrance animations for sections & elements║
+ * ╚══════════════════════════════════════════════════════╝
+ */
+
+/* ── Base Animation Setup ─────────────────────────────── */
+.scroll-animate,
+.scroll-animate-item,
+.scroll-animate-header,
+.scroll-animate-hero {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animate,
+    .scroll-animate-item,
+    .scroll-animate-header,
+    .scroll-animate-hero {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
+
+/* ── Section Reveal Animation ─────────────────────────── */
+@keyframes sectionReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-animate.in-view {
+    animation: sectionReveal 0.8s var(--ease-out) forwards;
+}
+
+/* ── Header Reveal Animation ──────────────────────────── */
+@keyframes headerReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scaleX(0.95);
+    }
+    50% {
+        transform: translateY(0) scaleX(1);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scaleX(1);
+    }
+}
+
+.scroll-animate-header.in-view {
+    animation: headerReveal 0.7s var(--ease-out) forwards;
+}
+
+/* ── Item Cascade Animation ───────────────────────────── */
+@keyframes itemReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.scroll-animate-item.in-view {
+    animation: itemReveal 0.6s var(--ease-out) forwards;
+}
+
+/* ── Hero Content Reveal ──────────────────────────────── */
+@keyframes heroReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-40px) rotateY(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotateY(0);
+    }
+}
+
+.scroll-animate-hero.in-view {
+    animation: heroReveal 0.8s var(--ease-out) forwards;
+}
+
+/* ── Stagger Animation ────────────────────────────────── */
+@keyframes staggerIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) rotateX(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+.stagger-in {
+    animation: staggerIn 0.6s var(--ease-out) both;
+}
+
+/* ── Text Reveal Animations ───────────────────────────── */
+
+/* Character reveal */
+@keyframes charReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) rotateX(90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+.char-reveal {
+    display: inline-block;
+    animation: charReveal 0.5s var(--ease-out) forwards;
+}
+
+/* Word reveal */
+@keyframes wordReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.word-reveal {
+    display: inline-block;
+    animation: wordReveal 0.5s var(--ease-out) forwards;
+}
+
+/* Line reveal */
+@keyframes lineReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+        clip-path: inset(0 0 100% 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.line-reveal {
+    animation: lineReveal 0.6s var(--ease-out) forwards;
+}
+
+/* ── Parallax Scroll Effect ───────────────────────────── */
+.hero {
+    background-attachment: fixed;
+    background-position: center 0;
+    transition: background-position 0.1s ease-out;
+}
+
+/* ── Number Counter Animation ─────────────────────────── */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+[data-count] {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--accent);
+    animation: pulse 0.3s ease-out;
+}
+
+/* ── Scroll Progress Indicator ────────────────────────── */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s ease;
+}
+
+/* ── Section-Specific Animations ──────────────────────── */
+
+/* Services section */
+.section#services .grid {
+    animation: fadeUpStagger 0.8s var(--ease-out) forwards;
+}
+
+@keyframes fadeUpStagger {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Work/Case Studies section */
+.section#work .grid .case {
+    position: relative;
+    overflow: hidden;
+}
+
+.section#work .grid .case::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmerOnScroll 0.6s ease forwards;
+}
+
+@keyframes shimmerOnScroll {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Tech Stack section */
+@keyframes stackFlip {
+    0% {
+        opacity: 0;
+        transform: rotateY(-90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0);
+    }
+}
+
+.section#stack [data-stack-item] {
+    animation: stackFlip 0.7s var(--ease-bounce) forwards;
+}
+
+/* About section */
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section#about .about__points > * {
+    animation: slideInUp 0.7s var(--ease-out) forwards;
+}
+
+.section#about .about__points > *:nth-child(1) { animation-delay: 0s; }
+.section#about .about__points > *:nth-child(2) { animation-delay: 0.1s; }
+.section#about .about__points > *:nth-child(3) { animation-delay: 0.2s; }
+.section#about .about__points > *:nth-child(4) { animation-delay: 0.3s; }
+
+/* Contact section */
+@keyframes contactReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.section#contact .contact > * {
+    animation: contactReveal 0.8s var(--ease-out) forwards;
+}
+
+.section#contact .contact > *:last-child {
+    animation-delay: 0.15s;
+}
+
+/* ── Scroll Trigger Classes ───────────────────────────── */
+
+/* Fade in */
+.scroll-fade-in {
+    animation: fadeIn 0.6s var(--ease-out) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide in from left */
+.scroll-slide-left {
+    animation: slideFromLeft 0.7s var(--ease-out) forwards;
+}
+
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide in from right */
+.scroll-slide-right {
+    animation: slideFromRight 0.7s var(--ease-out) forwards;
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Zoom in */
+.scroll-zoom-in {
+    animation: zoomIn 0.6s var(--ease-bounce) forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Rotate in */
+.scroll-rotate-in {
+    animation: rotateIn 0.8s var(--ease-bounce) forwards;
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-10deg) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+/* ── Scroll Threshold Indicators ──────────────────────── */
+
+/* Element visible indicator */
+.scroll-animate.in-view {
+    --shadow-intensity: 1;
+}
+
+/* ── Media Queries for Animations ─────────────────────── */
+
+@media (max-width: 900px) {
+    .scroll-animate,
+    .scroll-animate-item,
+    .scroll-animate-header,
+    .scroll-animate-hero {
+        animation-duration: 0.6s !important;
+    }
+
+    .stagger-in {
+        animation-duration: 0.5s !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .scroll-animate,
+    .scroll-animate-item,
+    .scroll-animate-header,
+    .scroll-animate-hero {
+        animation-duration: 0.5s !important;
+        transform: translateY(25px) !important;
+    }
+
+    @keyframes itemReveal {
+        0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Disable parallax on mobile for performance */
+    .hero {
+        background-attachment: scroll !important;
+    }
+}
+
+/* ── Performance Optimizations ────────────────────────── */
+
+/* Use will-change sparingly */
+.scroll-animate.in-view {
+    will-change: transform, opacity;
+}
+
+.scroll-animate.in-view:not(.in-view) {
+    will-change: auto;
+}
+
+/* GPU acceleration for smooth animations */
+.scroll-animate-item,
+.stagger-in,
+.char-reveal,
+.word-reveal,
+.line-reveal {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
